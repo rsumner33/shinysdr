@@ -230,6 +230,14 @@ class _PollerDelegateTarget(_PollerCellTarget):
         self._obj._poll_from_poller(fire)
 
 
+class _PollerDelegateTarget(_PollerCellTarget):
+    def __init__(self, cell):
+        _PollerCellTarget.__init__(self, cell)
+
+    def poll(self, fire):
+        self._obj._poll_from_poller(fire)
+
+
 class _SortedMultimap(object):
     """
     Support for Poller.
