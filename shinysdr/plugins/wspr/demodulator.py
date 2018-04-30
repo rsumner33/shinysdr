@@ -243,12 +243,17 @@ class WAVIntervalListener(ExportedState):
         self.__decoder_active = None
 
     def filename(self, start_time):
-        # TODO: We should be using the same frequency as __start_frequency but
+<<        # TODO: We should be using the same frequency as __start_frequency but
         # there is no guarantee in the interface about the timing of calls to
         # this method vs. fileOpened.
         time_str = time.strftime(b'%y%m%d_%H%M.wav', time.gmtime(start_time))
         filename = b'%s_%s' % (self.context.get_absolute_frequency_cell().get(), time_str)
-        return os.path.join(self.directory, filename)
+>>>>>>>+master
+=====
+          time_str = time.strftime(b'%y%m%d_%H%M.wav', time.gmtime(start_time))
+        filename = b'%s_%s' % (self.context.get_absolute_frequency(), time_str)
+>>>>>>>-06c6f54
+      return os.path.join(self.directory, filename)
     
     @exported_value(type=unicode, label='Status', changes='explicit')
     def get_status(self):
